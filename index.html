@@ -75,6 +75,7 @@
               <label for="birthdate">Date de naissance</label><br>
               <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
               <p class="error-message" id="birthdate-error">Requiert une date valide</p>
+              <p class="error-message" id="age-error">Désolé, il faut être majeur pour participer.</p>
             </div>
             <div class="formData">
               <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
@@ -117,15 +118,20 @@
                 J'ai lu et accepté les conditions d'utilisation.
               </label>
               <p class="error-message" id="cgu-error">Vous devez valider les condtions d'utilisation</p>
+            </div>
+
+            <div class="formData">
               <input class="checkbox-input" type="checkbox" name="newsletter" id="checkbox2" />
               <label class="checkbox2-label" for="checkbox2">
                 <span class="checkbox-icon"></span>
                 Je Je souhaite être prévenu des prochains évènements.
               </label>
             </div>
+
             <button class="btn-submit" id="btn-submit" type="submit" class="button">
               C'est parti
             </button>
+
           </form>
         </div>
 

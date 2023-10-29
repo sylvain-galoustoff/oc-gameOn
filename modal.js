@@ -19,9 +19,9 @@ const successScreen = document.querySelector("#success-screen")     //La page de
 const btnClose = document.querySelector("#btn-close")               //Le bouton pour fermer la modale sur la page succès
 
 // Inputs changes listeners
-inputs.forEach(element => element.addEventListener("input", inputChange));
-radios.forEach(element => element.addEventListener('change', radioChange));
-checkBoxes.forEach(element => element.addEventListener('change', boxChanges));
+inputs.forEach(element => element.addEventListener("input", inputChange));        //Ecoute les changements sur les éléments inputs (text, number, etc...)
+radios.forEach(element => element.addEventListener('change', radioChange));       //Ecoute les changements sur les bouton radio
+checkBoxes.forEach(element => element.addEventListener('change', boxChanges));    //Ecoute les changements sur les checkboxes
 // Submit form event
 reservationForm.addEventListener("submit", formSubmit);
 
@@ -92,7 +92,7 @@ function boxChanges(e) {
 
 }
 
-// Envoie le formulaire au serveur - On se contente d'un console.log dans notre cas
+// Si le formulaire est valide, on affiche la page de succès
 function formSubmit(e) {
   e.preventDefault()
 
@@ -115,6 +115,8 @@ function validateForm() {
       case "last": validate.push(validateIdentity("last", userForm.last))
         break;
       case "email": validate.push(validateMail(userForm.email))
+        break;
+      case "birthdate": validate.push(validateBirthdate(userForm.birthdate))
         break;
       case "quantity": validate.push(validateQuantity(userForm.quantity))
         break;
@@ -139,6 +141,7 @@ function validateForm() {
 
 
 function validateIdentity(fieldName, value) {
+
   const elementId = fieldName + "-error"
 
   if (value && value.length >= 2) {
@@ -160,6 +163,79 @@ function validateMail(value) {
   } else {
     document.getElementById("email-error").classList.add("show")
     return false
+  }
+
+}
+
+function validateBirthdate(value) {
+
+  console.log(value);
+
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+  // if (value && dateRegex.test(value)) {
+
+  //   const dateArray = value.split('-')
+  //   const dateObject = new Date(dateArray[0], dateArray[1], dateArray[2])
+  //   const birthTimestamp = dateObject.getTime()
+
+  //   const todayTimestamp = Date.now()
+
+  //   const timestampDistance = todayTimestamp - birthTimestamp
+  //   const yearDistance = timestampDistance / (1000 * 60 * 60 * 24 * 365.25);
+
+  //   document.getElementById("birthdate-error").classList.remove("show")
+
+  //   if (yearDistance > 18) {
+  //     document.getElementById("age-error").classList.remove("show")
+  //     return true
+  //   } else {
+  //     document.getElementById("age-error").classList.add("show")
+  //     return false
+  //   }
+
+  // } else {
+
+  //   document.getElementById("birthdate-error").classList.add("show")
+  //   return false
+
+  // }
+
+  if (!value) {
+
+    document.getElementById("birthdate-error").classList.add("show")
+    return false
+
+  } else if (!dateRegex.test(value)) {
+
+    document.getElementById("birthdate-error").classList.add("show")
+    return false
+
+  } else {
+
+    const dateArray = value.split('-')
+    const dateObject = new Date(dateArray[0], dateArray[1], dateArray[2])
+    const birthTimestamp = dateObject.getTime()
+
+    const todayTimestamp = Date.now()
+
+    const timestampDistance = todayTimestamp - birthTimestamp
+    const yearDistance = timestampDistance / (1000 * 60 * 60 * 24 * 365.25);
+
+    if (yearDistance < 18) {
+
+      document.getElementById("birthdate-error").classList.remove("show")
+      document.getElementById("age-error").classList.add("show")
+      return false
+
+    } else {
+
+      document.getElementById("birthdate-error").classList.remove("show")
+      document.getElementById("age-error").classList.remove("show")
+      return true
+
+    }
+
   }
 
 }
