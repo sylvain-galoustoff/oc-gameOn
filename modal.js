@@ -17,6 +17,7 @@ const checkBoxes = document.querySelectorAll('[type="checkbox"]')   //les checkb
 const reservationForm = document.querySelector("#reserve")          //Le formulaire entier
 const successScreen = document.querySelector("#success-screen")     //La page de succès si le formulaire est accepté
 const btnClose = document.querySelector("#btn-close")               //Le bouton pour fermer la modale sur la page succès
+const errorMessages = document.querySelectorAll('.error-message');  //Les messages d'erreur sous chaque input
 
 // Submit form event
 reservationForm.addEventListener("submit", formSubmit);
@@ -43,10 +44,15 @@ function launchModal() {
 function closeModal() {
   userForm = emptyUserForm;
   modalbg.classList.add("fade-out");
+  errorMessages.forEach(message => {
+    message.classList.remove('show');
+  })
+
   setTimeout(() => {
     modalbg.classList.remove("fade-out");
     modalbg.style.display = "none";
   }, 200);
+
 }
 
 //////////////////////
