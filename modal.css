@@ -659,8 +659,31 @@ footer {
   bottom: -20px;
   left: 0;
   display: none;
+  animation: flash 1s forwards;
 }
 
 .error-message.show {
   display: block;
+}
+
+@keyframes flash {
+  from {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

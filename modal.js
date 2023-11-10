@@ -11,17 +11,13 @@ function editNav() {
 const modalbg = document.querySelector(".bground");                 //La modale
 const modalBtn = document.querySelectorAll(".modal-btn");           //Bouton qui ouvre la modale
 const closeBtn = document.querySelectorAll(".close")                //Bouton qui ferme la modale
-const inputs = document.querySelectorAll(".text-control")           //Les champs imputs de tout type
+const inputs = document.querySelectorAll(".text-control")           //Les champs inputs de tout type
 const radios = document.querySelectorAll('[type="radio"]')          //Les boutons radio
-const checkBoxes = document.querySelectorAll('[type="checkbox"]')   //les checkbox
+const checkBoxes = document.querySelectorAll('[type="checkbox"]')   //les checkboxes
 const reservationForm = document.querySelector("#reserve")          //Le formulaire entier
 const successScreen = document.querySelector("#success-screen")     //La page de succès si le formulaire est accepté
 const btnClose = document.querySelector("#btn-close")               //Le bouton pour fermer la modale sur la page succès
 
-// Inputs changes listeners
-inputs.forEach(element => element.addEventListener("input", inputChange));        //Ecoute les changements sur les éléments inputs (text, number, etc...)
-radios.forEach(element => element.addEventListener('change', radioChange));       //Ecoute les changements sur les bouton radio
-checkBoxes.forEach(element => element.addEventListener('change', boxChanges));    //Ecoute les changements sur les checkboxes
 // Submit form event
 reservationForm.addEventListener("submit", formSubmit);
 
@@ -45,6 +41,7 @@ function launchModal() {
 
 // Close modal
 function closeModal() {
+  userForm = emptyUserForm;
   modalbg.classList.add("fade-out");
   setTimeout(() => {
     modalbg.classList.remove("fade-out");
@@ -55,9 +52,13 @@ function closeModal() {
 //////////////////////
 // Form validation
 //////////////////////
+// Inputs changes listeners
+inputs.forEach(element => element.addEventListener("input", inputChange));        //Ecoute les changements sur les éléments inputs (text, number, etc...)
+radios.forEach(element => element.addEventListener('change', radioChange));       //Ecoute les changements sur les bouton radio
+checkBoxes.forEach(element => element.addEventListener('change', boxChanges));    //Ecoute les changements sur les checkboxes
 
 //On stocke les valeurs des différents champs du formulaire dans l'objet userForm
-const userForm = {
+let userForm = {
   first: null,
   last: null,
   email: null,
@@ -67,6 +68,8 @@ const userForm = {
   cgu: false,
   newsletter: true
 }
+
+const emptyUserForm = { ...userForm }
 
 // Handle inputs changes listeners
 function inputChange(e) {
