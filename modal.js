@@ -57,7 +57,7 @@ function closeModal() {
 //////////////////////
 
 //On stocke les valeurs des différents champs du formulaire dans l'objet userForm
-var userForm = {
+const userForm = {
   first: null,
   last: null,
   email: null,
@@ -102,7 +102,7 @@ function formSubmit(e) {
 
 }
 
-//Les validateur ci-dessous renvoie true si la règle de validation est respéectée
+//Les validateur ci-dessous renvoie true si toutes les règles de validation est respéectée
 function validateForm() {
 
   let validate = []
@@ -169,37 +169,7 @@ function validateMail(value) {
 
 function validateBirthdate(value) {
 
-  console.log(value);
-
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-
-  // if (value && dateRegex.test(value)) {
-
-  //   const dateArray = value.split('-')
-  //   const dateObject = new Date(dateArray[0], dateArray[1], dateArray[2])
-  //   const birthTimestamp = dateObject.getTime()
-
-  //   const todayTimestamp = Date.now()
-
-  //   const timestampDistance = todayTimestamp - birthTimestamp
-  //   const yearDistance = timestampDistance / (1000 * 60 * 60 * 24 * 365.25);
-
-  //   document.getElementById("birthdate-error").classList.remove("show")
-
-  //   if (yearDistance > 18) {
-  //     document.getElementById("age-error").classList.remove("show")
-  //     return true
-  //   } else {
-  //     document.getElementById("age-error").classList.add("show")
-  //     return false
-  //   }
-
-  // } else {
-
-  //   document.getElementById("birthdate-error").classList.add("show")
-  //   return false
-
-  // }
 
   if (!value) {
 
