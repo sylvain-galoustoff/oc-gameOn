@@ -75,7 +75,16 @@ let userForm = {
   newsletter: true
 }
 
-const emptyUserForm = { ...userForm }
+const emptyUserForm = {
+  first: null,
+  last: null,
+  email: null,
+  birthdate: null,
+  quantity: null,
+  location: null,
+  cgu: false,
+  newsletter: true
+}
 
 // Handle inputs changes listeners
 function inputChange(e) {
