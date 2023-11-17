@@ -64,7 +64,7 @@ radios.forEach(element => element.addEventListener('change', radioChange));     
 checkBoxes.forEach(element => element.addEventListener('change', boxChanges));    //Ecoute les changements sur les checkboxes
 
 //On stocke les valeurs des différents champs du formulaire dans l'objet userForm
-let userForm = {
+const emptyUserForm = {
   first: null,
   last: null,
   email: null,
@@ -75,7 +75,7 @@ let userForm = {
   newsletter: true
 }
 
-const emptyUserForm = {
+let userForm = {
   first: null,
   last: null,
   email: null,
