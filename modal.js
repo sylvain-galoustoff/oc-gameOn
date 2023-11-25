@@ -19,10 +19,6 @@ const successScreen = document.querySelector("#success-screen")     //La page de
 const btnClose = document.querySelector("#btn-close")               //Le bouton pour fermer la modale sur la page succès
 const errorMessages = document.querySelectorAll('.error-message');  //Les messages d'erreur sous chaque input
 
-// Submit form event
-reservationForm.addEventListener("submit", formSubmit);
-
-
 //////////////////////
 //Toggle modal
 //////////////////////
@@ -36,6 +32,7 @@ btnClose.addEventListener("click", closeModal);
 // launch modal form
 function launchModal() {
   reservationForm.reset()
+  userForm = { ...emptyUserForm }
   successScreen.classList.remove('show');
   modalbg.style.display = "flex";
 }
@@ -100,6 +97,9 @@ function boxChanges(e) {
   }
 
 }
+
+// Submit form event
+reservationForm.addEventListener("submit", formSubmit);
 
 // Si le formulaire est valide, on affiche la page de succès
 function formSubmit(e) {
