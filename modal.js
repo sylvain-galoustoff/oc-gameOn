@@ -39,7 +39,7 @@ function launchModal() {
 
 // Close modal
 function closeModal() {
-  userForm = emptyUserForm;
+  userForm = {...emptyUserForm};
   modalbg.classList.add("fade-out");
   errorMessages.forEach(message => {
     message.classList.remove('show');
