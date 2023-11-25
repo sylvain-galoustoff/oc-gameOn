@@ -31,15 +31,20 @@ btnClose.addEventListener("click", closeModal);
 
 // launch modal form
 function launchModal() {
-  reservationForm.reset()
-  userForm = { ...emptyUserForm }
-  successScreen.classList.remove('show');
+  
+  
   modalbg.style.display = "flex";
 }
 
 // Close modal
 function closeModal() {
+
+  //Reset du formulaire
+  reservationForm.reset()
+  successScreen.classList.remove('show');
   userForm = {...emptyUserForm};
+
+  //Disparition de la modale
   modalbg.classList.add("fade-out");
   errorMessages.forEach(message => {
     message.classList.remove('show');
